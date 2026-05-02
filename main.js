@@ -9,6 +9,9 @@
 (function () {
   'use strict';
 
+  /** Delay (ms) used to simulate an async form submission. */
+  var FORM_SUBMIT_DELAY = 1200;
+
   /* ──────────────────────────────────────────
      Navbar
   ────────────────────────────────────────── */
@@ -107,7 +110,11 @@
     }
 
     function validateEmail(value) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+      // Use a temporary input element to leverage the browser's built-in email validation
+      var probe = document.createElement('input');
+      probe.type = 'email';
+      probe.value = value.trim();
+      return probe.checkValidity();
     }
 
     // Real-time validation on blur
@@ -177,7 +184,7 @@
           formSuccess.classList.add('visible');
           setTimeout(() => formSuccess.classList.remove('visible'), 5000);
         }
-      }, 1200);
+      }, FORM_SUBMIT_DELAY);
     });
   }
 })();
