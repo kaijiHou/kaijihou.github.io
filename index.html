@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="个人作品集 — 研究学者、工程师" />
+  <title>Kaiji Hou | 个人作品集</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================
+       Navigation
+       ============================ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="主导航">
+    <div class="container nav-inner">
+      <a href="#home" class="nav-logo">KH<span>.</span></a>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#home">首页</a></li>
+        <li><a href="#about">关于我</a></li>
+        <li><a href="#projects">项目</a></li>
+        <li><a href="#publications">论文</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="切换菜单" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================
+       Hero / Home
+       ============================ -->
+  <section id="home" aria-label="首页">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <p class="hero-greeting">你好，欢迎来到我的主页</p>
+          <h1 class="hero-title">
+            我是 <span class="highlight">侯开基</span>，<br />
+            研究者 &amp; 工程师
+          </h1>
+          <p class="hero-bio">
+            专注于人工智能与数据科学领域的研究与应用开发，致力于将前沿技术转化为解决实际问题的创新方案。
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <!-- arrow-right icon -->
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+              查看我的项目
+            </a>
+            <a href="#contact" class="btn btn-outline">联系我</a>
+          </div>
+        </div>
+        <div class="hero-avatar" aria-hidden="true">
+          <div class="avatar-wrapper">
+            <div class="avatar-placeholder">
+              <!-- person icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+              </svg>
+              <span>头像占位</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       About Me
+       ============================ -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="container">
+      <h2 class="section-title" id="about-title">关于我</h2>
+      <p class="section-subtitle">了解我的学术背景、研究方向与技术能力</p>
+
+      <div class="about-grid">
+
+        <!-- Education -->
+        <div class="about-card">
+          <div class="about-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+          </div>
+          <h3>教育背景</h3>
+          <ul class="edu-list" role="list">
+            <li>
+              <span class="edu-dot" aria-hidden="true"></span>
+              <div class="edu-info">
+                <strong>博士研究生 · 计算机科学与技术</strong>
+                <span>某某大学 &nbsp;|&nbsp; 2022 — 至今</span>
+              </div>
+            </li>
+            <li>
+              <span class="edu-dot" aria-hidden="true"></span>
+              <div class="edu-info">
+                <strong>硕士 · 人工智能</strong>
+                <span>某某大学 &nbsp;|&nbsp; 2019 — 2022</span>
+              </div>
+            </li>
+            <li>
+              <span class="edu-dot" aria-hidden="true"></span>
+              <div class="edu-info">
+                <strong>学士 · 软件工程</strong>
+                <span>某某大学 &nbsp;|&nbsp; 2015 — 2019</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Research Directions -->
+        <div class="about-card">
+          <div class="about-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+          </div>
+          <h3>研究方向</h3>
+          <ul class="research-list" role="list">
+            <li class="research-item">深度学习与神经网络优化</li>
+            <li class="research-item">自然语言处理（NLP）</li>
+            <li class="research-item">计算机视觉与多模态学习</li>
+            <li class="research-item">知识图谱与推理</li>
+            <li class="research-item">联邦学习与隐私保护计算</li>
+          </ul>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="about-card about-card-full">
+          <div class="about-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+          </div>
+          <h3>技术栈</h3>
+          <div class="tech-tags" role="list">
+            <span class="tech-tag" role="listitem">Python</span>
+            <span class="tech-tag" role="listitem">PyTorch</span>
+            <span class="tech-tag" role="listitem">TensorFlow</span>
+            <span class="tech-tag" role="listitem">Transformers (HuggingFace)</span>
+            <span class="tech-tag" role="listitem">Scikit-learn</span>
+            <span class="tech-tag" role="listitem">NumPy / Pandas</span>
+            <span class="tech-tag" role="listitem">Docker</span>
+            <span class="tech-tag" role="listitem">Linux / Bash</span>
+            <span class="tech-tag" role="listitem">Git</span>
+            <span class="tech-tag" role="listitem">C++</span>
+            <span class="tech-tag" role="listitem">JavaScript</span>
+            <span class="tech-tag" role="listitem">SQL</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Projects
+       ============================ -->
+  <section id="projects" aria-labelledby="projects-title">
+    <div class="container">
+      <h2 class="section-title" id="projects-title">项目展示</h2>
+      <p class="section-subtitle">精选研究与工程项目</p>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21 3H3v18h18V3zm-9 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+            <span class="project-thumb-label">NLP</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">多语言文本情感分析系统</h3>
+            <p class="project-desc">
+              基于预训练语言模型（mBERT / XLM-R）构建的跨语言情感分析框架，支持中文、英文等 12 种语言，在公开基准数据集上达到 SOTA 水平。
+            </p>
+            <div class="project-tags" aria-label="技术标签">
+              <span class="tag">Python</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">Transformers</span>
+              <span class="tag">NLP</span>
+            </div>
+            <a href="#" class="btn-project" aria-label="查看多语言文本情感分析系统详情">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              查看详情
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-thumb" style="background: linear-gradient(135deg, #134e4a 0%, #0f766e 100%);" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+            <span class="project-thumb-label">CV</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">医学图像病灶检测平台</h3>
+            <p class="project-desc">
+              利用目标检测与分割算法（YOLOv8 + SAM）开发的医学影像辅助诊断工具，可自动识别 CT 影像中的肺结节，辅助医生提高诊断效率。
+            </p>
+            <div class="project-tags" aria-label="技术标签">
+              <span class="tag">Python</span>
+              <span class="tag">YOLOv8</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">Flask</span>
+            </div>
+            <a href="#" class="btn-project" aria-label="查看医学图像病灶检测平台详情">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              查看详情
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="project-thumb" style="background: linear-gradient(135deg, #312e81 0%, #4f46e5 100%);" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+            <span class="project-thumb-label">KG</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">学术知识图谱构建与问答</h3>
+            <p class="project-desc">
+              从大规模学术论文语料中自动抽取实体与关系，构建学术领域知识图谱，并结合大型语言模型实现图谱增强的智能问答系统。
+            </p>
+            <div class="project-tags" aria-label="技术标签">
+              <span class="tag">Neo4j</span>
+              <span class="tag">SpaCy</span>
+              <span class="tag">LLM</span>
+              <span class="tag">REST API</span>
+            </div>
+            <a href="#" class="btn-project" aria-label="查看学术知识图谱构建与问答详情">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              查看详情
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Publications
+       ============================ -->
+  <section id="publications" aria-labelledby="pub-title">
+    <div class="container">
+      <h2 class="section-title" id="pub-title">发表论文</h2>
+      <p class="section-subtitle">代表性学术成果</p>
+
+      <div class="pub-list" role="list">
+
+        <!-- Paper 1 -->
+        <article class="pub-card" role="listitem">
+          <div class="pub-number" aria-hidden="true">1</div>
+          <div class="pub-body">
+            <h3 class="pub-title">
+              Cross-Lingual Sentiment Analysis via Contrastive Pre-Training on Multilingual Corpora
+            </h3>
+            <div class="pub-meta">
+              <span class="pub-venue">IEEE Transactions on Neural Networks and Learning Systems</span>
+              <span class="pub-sep" aria-hidden="true">·</span>
+              <span class="pub-year">2024</span>
+            </div>
+            <a href="#" class="btn-pub" target="_blank" rel="noopener noreferrer" aria-label="查看论文：Cross-Lingual Sentiment Analysis">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              查看论文
+            </a>
+          </div>
+        </article>
+
+        <!-- Paper 2 -->
+        <article class="pub-card" role="listitem">
+          <div class="pub-number" aria-hidden="true">2</div>
+          <div class="pub-body">
+            <h3 class="pub-title">
+              Federated Knowledge Graph Completion with Differential Privacy Guarantees
+            </h3>
+            <div class="pub-meta">
+              <span class="pub-venue">Proceedings of the 38th AAAI Conference on Artificial Intelligence (AAAI)</span>
+              <span class="pub-sep" aria-hidden="true">·</span>
+              <span class="pub-year">2024</span>
+            </div>
+            <a href="#" class="btn-pub" target="_blank" rel="noopener noreferrer" aria-label="查看论文：Federated Knowledge Graph Completion">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              查看论文
+            </a>
+          </div>
+        </article>
+
+        <!-- Paper 3 -->
+        <article class="pub-card" role="listitem">
+          <div class="pub-number" aria-hidden="true">3</div>
+          <div class="pub-body">
+            <h3 class="pub-title">
+              Automated Pulmonary Nodule Detection Using Multi-Scale Convolutional Neural Networks on Low-Dose CT Images
+            </h3>
+            <div class="pub-meta">
+              <span class="pub-venue">Medical Image Analysis (Elsevier)</span>
+              <span class="pub-sep" aria-hidden="true">·</span>
+              <span class="pub-year">2023</span>
+            </div>
+            <a href="#" class="btn-pub" target="_blank" rel="noopener noreferrer" aria-label="查看论文：Automated Pulmonary Nodule Detection">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              查看论文
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Contact
+       ============================ -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <h2 class="section-title" id="contact-title">联系我</h2>
+      <p class="section-subtitle">有问题或合作意向？欢迎随时与我联系</p>
+
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>保持联系</h3>
+          <p>
+            无论是学术交流、项目合作，还是有任何技术问题，我都很乐意与您沟通交流。请填写右侧表单或通过以下方式联系我。
+          </p>
+
+          <div class="contact-detail">
+            <!-- email icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>example@university.edu.cn</span>
+          </div>
+
+          <div class="contact-detail">
+            <!-- location icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>中国 · 某某市</span>
+          </div>
+
+          <div class="contact-detail">
+            <!-- school icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+            <span>某某大学 计算机科学与技术学院</span>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <form id="contactForm" novalidate aria-label="联系表单">
+            <div class="form-group">
+              <label for="name">
+                姓名 <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                id="name"
+                name="name"
+                placeholder="请输入您的姓名"
+                autocomplete="name"
+                aria-describedby="nameError"
+                aria-required="true"
+              />
+              <span class="form-error" id="nameError" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">
+                邮箱 <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="form-control"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="请输入您的邮箱地址"
+                autocomplete="email"
+                aria-describedby="emailError"
+                aria-required="true"
+              />
+              <span class="form-error" id="emailError" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="message">
+                留言内容 <span class="required" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                class="form-control"
+                id="message"
+                name="message"
+                placeholder="请输入您的留言内容…"
+                rows="5"
+                aria-describedby="messageError"
+                aria-required="true"
+              ></textarea>
+              <span class="form-error" id="messageError" role="alert"></span>
+            </div>
+
+            <button type="submit" class="btn-submit">发送消息</button>
+
+            <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+              <!-- checkmark icon -->
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+              消息已发送，感谢您的联系！我会尽快回复您。
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Footer
+       ============================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">KH<span>.</span></div>
+      <p class="footer-copy">
+        &copy; <span id="year">2026</span> 侯开基. All rights reserved.
+      </p>
+      <div class="footer-socials" aria-label="社交媒体链接">
+        <!-- GitHub -->
+        <a href="#" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+        </a>
+        <!-- Google Scholar / research icon -->
+        <a href="#" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="#" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        </a>
+        <!-- Email -->
+        <a href="mailto:example@university.edu.cn" class="social-link" aria-label="发送邮件">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll-to-top button -->
+  <button class="scroll-top" id="scrollTop" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"/></svg>
+  </button>
+
+  <script src="main.js"></script>
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
