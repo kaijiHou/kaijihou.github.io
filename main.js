@@ -111,7 +111,7 @@
 
     function validateEmail(value) {
       // Use a temporary input element to leverage the browser's built-in email validation
-      var probe = document.createElement('input');
+      const probe = document.createElement('input');
       probe.type = 'email';
       probe.value = value.trim();
       return probe.checkValidity();
