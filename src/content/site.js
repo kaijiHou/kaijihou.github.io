@@ -7,7 +7,7 @@ export const site = {
     email: '1377295397@qq.com',
     phone: '18963972706',
     links: {
-      github: 'https://github.com/kaijiHou',
+      github: 'https://github.com/BistuCS',
       scholar: '',
       cv: '',
     },
@@ -21,7 +21,7 @@ export const site = {
       },
       {
         title: '大模型与CV项目经验',
-        desc: '深入参与大模型微调（LLaMA-Factory + LoRA）、部署（vLLM）与 AI Agent 部署，熟悉从数据构建到模型落地的全流程；在无人机定位、图像超分辨率等 CV 任务中提出创新模块并实现性能显著提升。',
+        desc: '深入参与大模型微调（LLaMA-Factory + LoRA）、部署（vLLM）与 AI Agent 工作流编排（LangChain/LangGraph），熟悉 SAM3、ComfyUI 等自动化标注工具链，掌握从数据构建到模型落地的全流程；在无人机定位、图像超分辨率等 CV 任务中提出创新模块并实现性能显著提升。',
         icon: '🤖',
       },
       {
@@ -53,6 +53,9 @@ export const site = {
       'YOLOv8 / ONNX',
       'vLLM / GPTQ',
       'LLaMA-Factory / LoRA',
+      'SAM3 / ComfyUI',
+      'LangChain / LangGraph',
+      '工作流编排',
       'Django',
       'C++ / OpenCV',
       'Redis / HTTP',
@@ -87,7 +90,7 @@ export const site = {
       authors: 'Kaiji Hou, ...',
       image: '/papers/spe.jpg',
       abstract:
-        '提出基于 DINOv2 的 Structural Perception Enhancement 网络，挖掘细粒度区域特征并实现跨视角精准对齐；结合样本重平衡缓解卫星样本稀缺带来的训练不稳定，在 U1652 与 SUES-200 上提升 R@1 与 AP。',
+        '由于无人机（UAV）与卫星图像之间的视角和场景布局存在巨大差异，跨视角地理定位（CVGL）面临显著挑战。现有方法主要强调全局语义特征提取，但往往忽略细粒度局部区域，且在跨视角特征对齐方面存在困难。为此，我们提出结构感知增强（SPE）网络，基于 DINOv2 骨干架构，集成局部区域挖掘模块（LRMM），用于提取判别性区域特征并实现精确的跨视角特征对齐。此外，引入样本再平衡策略（SRS）以解决卫星图像稀缺和样本不平衡导致的训练不稳定问题。',
       links: {
         paper: 'https://link.springer.com/chapter/10.1007/978-981-95-5699-1_34',
         code: '',

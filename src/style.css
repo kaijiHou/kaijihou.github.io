@@ -569,9 +569,9 @@ ul { list-style: none; }
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--border);
-  background: var(--bg);
+  background: #f1f5f9;
 }
-.media__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.media__img { width: 100%; height: 100%; object-fit: contain; display: block; background: #f1f5f9; }
 .media--placeholder {
   display: grid;
   place-items: center;

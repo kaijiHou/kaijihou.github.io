@@ -8,8 +8,8 @@ const showBackTop = ref(false)
 const nav = computed(() => [
   { id: 'about', label: '关于我' },
   { id: 'publications', label: '论文' },
-  { id: 'projects', label: '项目' },
   { id: 'experience', label: '经历' },
+  { id: 'projects', label: '项目' },
   { id: 'education', label: '教育' },
   { id: 'honors', label: '荣誉' },
   { id: 'contact', label: '联系' },
@@ -188,7 +188,7 @@ onUnmounted(() => {
               {{ linkLabel[l.key] ?? l.key }}
             </a>
             <button class="btn" @click="scrollTo('publications')">📄 查看论文</button>
-            <button class="btn" @click="scrollTo('projects')">🚀 查看项目</button>
+            <a class="btn" href="https://github.com/BistuCS" target="_blank" rel="noreferrer">🚀 查看项目</a>
           </div>
 
           <div class="tags">
@@ -277,6 +277,33 @@ onUnmounted(() => {
         </div>
       </section>
 
+      <!-- ═══════════ EXPERIENCE ═══════════ -->
+      <section id="experience" class="section anim-up">
+        <div class="section__header">
+          <h2 class="section__title">💼 工作/实习经历</h2>
+          <p class="section__desc">Experience</p>
+        </div>
+
+        <div class="stack">
+          <article v-for="e in site.experience" :key="e.company + e.period" class="card timeline">
+            <div class="timeline__head">
+              <div>
+                <h3 class="card__title">{{ e.company }}</h3>
+                <div class="muted" style="font-size:13px;">{{ e.team }}</div>
+              </div>
+              <div class="timeline__right">
+                <div class="chip chip--accent">{{ e.title }}</div>
+                <div class="muted" style="font-size:12px;">{{ e.period }}</div>
+              </div>
+            </div>
+
+            <ul class="bullets" style="margin-top:12px;">
+              <li v-for="b in e.bullets" :key="b">{{ b }}</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
       <!-- ═══════════ PROJECTS ═══════════ -->
       <section id="projects" class="section anim-up">
         <div class="section__header">
@@ -325,33 +352,6 @@ onUnmounted(() => {
                 </a>
               </div>
             </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- ═══════════ EXPERIENCE ═══════════ -->
-      <section id="experience" class="section anim-up">
-        <div class="section__header">
-          <h2 class="section__title">💼 工作/实习经历</h2>
-          <p class="section__desc">Experience</p>
-        </div>
-
-        <div class="stack">
-          <article v-for="e in site.experience" :key="e.company + e.period" class="card timeline">
-            <div class="timeline__head">
-              <div>
-                <h3 class="card__title">{{ e.company }}</h3>
-                <div class="muted" style="font-size:13px;">{{ e.team }}</div>
-              </div>
-              <div class="timeline__right">
-                <div class="chip chip--accent">{{ e.title }}</div>
-                <div class="muted" style="font-size:12px;">{{ e.period }}</div>
-              </div>
-            </div>
-
-            <ul class="bullets" style="margin-top:12px;">
-              <li v-for="b in e.bullets" :key="b">{{ b }}</li>
-            </ul>
           </article>
         </div>
       </section>
