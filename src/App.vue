@@ -1,23 +1,29 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { site } from './content/site'
 
 const active = ref('about')
+const showBackTop = ref(false)
 
 const nav = computed(() => [
-  { id: 'about', label: 'About' },
-  { id: 'publications', label: 'Publications' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'education', label: 'Education' },
-  { id: 'honors', label: 'Honors' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'about', label: '关于我' },
+  { id: 'publications', label: '论文' },
+  { id: 'projects', label: '项目' },
+  { id: 'experience', label: '经历' },
+  { id: 'education', label: '教育' },
+  { id: 'honors', label: '荣誉' },
+  { id: 'contact', label: '联系' },
 ])
 
 function scrollTo(id) {
+  active.value = id
   const el = document.getElementById(id)
   if (!el) return
   el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 function nonEmptyLinks(obj) {
@@ -32,11 +38,11 @@ const linkLabel = {
   scholar: 'Scholar',
   cv: 'CV',
   homepage: 'Homepage',
-  paper: 'Paper',
+  paper: '论文',
   arxiv: 'arXiv',
-  code: 'Code',
-  project: 'Project',
-  repo: 'Repo',
+  code: '代码',
+  project: '项目',
+  repo: '仓库',
   demo: 'Demo',
 }
 
@@ -46,13 +52,81 @@ function toggleAbs(i) {
   next.has(i) ? next.delete(i) : next.add(i)
   openAbs.value = next
 }
+
+// ── Scroll spy ──
+let observer = null
+function setupScrollSpy() {
+  const ids = nav.value.map(n => n.id)
+  observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+      if (visible.length) {
+        active.value = visible[0].target.id
+      }
+    },
+    { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+  )
+  ids.forEach(id => {
+    const el = document.getElementById(id)
+    if (el) observer.observe(el)
+  })
+}
+
+// ── Back to top visibility ──
+function onScroll() {
+  showBackTop.value = window.scrollY > 500
+  const bar = document.querySelector('.topbar')
+  if (bar) bar.classList.toggle('scrolled', window.scrollY > 10)
+}
+
+// ── Entrance animations ──
+let animObserver = null
+function setupAnimObserver() {
+  animObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible')
+          animObserver.unobserve(e.target)
+        }
+      })
+    },
+    { rootMargin: '0px 0px -60px 0px', threshold: 0.1 }
+  )
+  nextTick(() => {
+    document.querySelectorAll('.anim-up').forEach(el => animObserver.observe(el))
+  })
+}
+
+onMounted(() => {
+  setupScrollSpy()
+  setupAnimObserver()
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+  if (animObserver) animObserver.disconnect()
+  window.removeEventListener('scroll', onScroll)
+})
 </script>
 
 <template>
   <div class="app">
+    <!-- Animated background mesh -->
+    <div class="bg-mesh">
+      <div class="bg-mesh__orb bg-mesh__orb--1"></div>
+      <div class="bg-mesh__orb bg-mesh__orb--2"></div>
+      <div class="bg-mesh__orb bg-mesh__orb--3"></div>
+    </div>
+
+    <!-- Topbar -->
     <header class="topbar">
       <div class="topbar__inner">
-        <div class="brand" @click="scrollTo('top')" role="button" tabindex="0">
+        <div class="brand" @click="scrollToTop" role="button" tabindex="0">
           <span class="brand__dot"></span>
           <span class="brand__name">{{ site.person.name }}</span>
         </div>
@@ -72,8 +146,8 @@ function toggleAbs(i) {
     </header>
 
     <div id="top" class="container">
-      <!-- HERO -->
-      <section class="hero card">
+      <!-- ═══════════ HERO ═══════════ -->
+      <section class="hero card anim-up">
         <div class="hero__left">
           <div class="avatar">
             <div class="avatar__placeholder">HK</div>
@@ -89,12 +163,16 @@ function toggleAbs(i) {
 
           <div class="hero__meta">
             <div class="meta-item">
-              <span class="meta-k">Location</span>
+              <span class="meta-k">📍</span>
               <span class="meta-v">{{ site.person.location }}</span>
             </div>
             <div class="meta-item">
-              <span class="meta-k">Email</span>
+              <span class="meta-k">📧</span>
               <a class="meta-v link" :href="`mailto:${site.person.email}`">{{ site.person.email }}</a>
+            </div>
+            <div class="meta-item">
+              <span class="meta-k">📱</span>
+              <span class="meta-v">{{ site.person.phone }}</span>
             </div>
           </div>
 
@@ -102,15 +180,15 @@ function toggleAbs(i) {
             <a
               v-for="l in nonEmptyLinks(site.person.links)"
               :key="l.key"
-              class="btn"
+              class="btn btn--primary"
               :href="l.href"
               target="_blank"
               rel="noreferrer"
             >
               {{ linkLabel[l.key] ?? l.key }}
             </a>
-            <button class="btn btn--ghost" @click="scrollTo('publications')">View Publications</button>
-            <button class="btn btn--ghost" @click="scrollTo('projects')">View Projects</button>
+            <button class="btn" @click="scrollTo('publications')">📄 查看论文</button>
+            <button class="btn" @click="scrollTo('projects')">🚀 查看项目</button>
           </div>
 
           <div class="tags">
@@ -119,40 +197,36 @@ function toggleAbs(i) {
         </div>
       </section>
 
-      <!-- ABOUT -->
-      <section id="about" class="section">
+      <!-- ═══════════ ABOUT / 个人优势 ═══════════ -->
+      <section id="about" class="section anim-up">
         <div class="section__header">
-          <h2 class="section__title">About</h2>
-          <p class="section__desc">个人简介、研究方向与技能概览</p>
+          <h2 class="section__title">💪 个人优势</h2>
+          <p class="section__desc">Strengths & Skills</p>
         </div>
 
-        <div class="grid grid--2">
-          <div class="card">
-            <h3 class="card__title">简介</h3>
-            <p class="p">{{ site.person.about }}</p>
-          </div>
+        <p class="p" style="margin-bottom:18px;max-width:800px;">{{ site.person.about }}</p>
 
-          <div class="card">
-            <h3 class="card__title">Skills</h3>
-            <div class="tags">
-              <span v-for="s in site.person.skills" :key="s" class="tag">{{ s }}</span>
-            </div>
-            <div class="spacer"></div>
-            <h3 class="card__title">Quick Facts</h3>
-            <ul class="list">
-              <li><span class="muted">Phone:</span> {{ site.person.phone }}</li>
-              <li><span class="muted">Email:</span> {{ site.person.email }}</li>
-              <li><span class="muted">Focus:</span> {{ site.person.focus.slice(0, 3).join(' · ') }}</li>
-            </ul>
+        <div class="grid grid--3">
+          <div v-for="s in site.person.strengths" :key="s.title" class="card strength-card">
+            <span class="strength-card__icon">{{ s.icon }}</span>
+            <h3>{{ s.title }}</h3>
+            <p>{{ s.desc }}</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3 class="card__title">🛠️ 技能栈</h3>
+          <div class="tags" style="margin-top:10px">
+            <span v-for="sk in site.person.skills" :key="sk" class="tag">{{ sk }}</span>
           </div>
         </div>
       </section>
 
-      <!-- PUBLICATIONS -->
-      <section id="publications" class="section">
+      <!-- ═══════════ PUBLICATIONS ═══════════ -->
+      <section id="publications" class="section anim-up">
         <div class="section__header">
-          <h2 class="section__title">Publications</h2>
-          <p class="section__desc">论文列表（支持配图、链接、摘要展开）</p>
+          <h2 class="section__title">📝 论文发表</h2>
+          <p class="section__desc">Publications</p>
         </div>
 
         <div class="stack">
@@ -162,20 +236,18 @@ function toggleAbs(i) {
                 <img class="media__img" :src="p.image" :alt="p.title" />
               </div>
               <div v-else class="media media--placeholder">
-                <div class="media__ph">Paper Figure</div>
+                <div class="media__ph">📊 Paper Figure</div>
               </div>
             </div>
 
             <div class="pub__body">
-              <div class="pub__top">
-                <h3 class="pub__title">{{ p.title }}</h3>
-                <div class="pub__meta">
-                  <span class="chip">{{ p.venue }}</span>
-                  <span class="chip">{{ p.year }}</span>
-                  <span v-if="p.highlight" class="chip chip--accent">{{ p.highlight }}</span>
-                </div>
-                <div class="pub__authors muted">{{ p.authors }}</div>
+              <h3 class="pub__title">{{ p.title }}</h3>
+              <div class="pub__meta">
+                <span class="chip">{{ p.venue }}</span>
+                <span class="chip">{{ p.year }}</span>
+                <span v-if="p.highlight" class="chip chip--accent">{{ p.highlight }}</span>
               </div>
+              <div class="pub__authors muted">{{ p.authors }}</div>
 
               <div class="tags">
                 <span v-for="t in p.tags ?? []" :key="t" class="tag tag--soft">{{ t }}</span>
@@ -190,10 +262,10 @@ function toggleAbs(i) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {{ linkLabel[l.key] ?? l.key }}
+                  🔗 {{ linkLabel[l.key] ?? l.key }}
                 </a>
                 <button class="btn btn--small btn--ghost" @click="toggleAbs(i)">
-                  {{ openAbs.has(i) ? 'Hide Abstract' : 'Show Abstract' }}
+                  {{ openAbs.has(i) ? '▲ 收起摘要' : '▼ 展开摘要' }}
                 </button>
               </div>
 
@@ -205,11 +277,11 @@ function toggleAbs(i) {
         </div>
       </section>
 
-      <!-- PROJECTS -->
-      <section id="projects" class="section">
+      <!-- ═══════════ PROJECTS ═══════════ -->
+      <section id="projects" class="section anim-up">
         <div class="section__header">
-          <h2 class="section__title">Projects</h2>
-          <p class="section__desc">精选项目（支持配图、要点、链接按钮）</p>
+          <h2 class="section__title">🚀 项目经历</h2>
+          <p class="section__desc">Projects</p>
         </div>
 
         <div class="grid grid--2">
@@ -219,15 +291,16 @@ function toggleAbs(i) {
                 <img class="media__img" :src="pr.image" :alt="pr.name" />
               </div>
               <div v-else class="media media--placeholder">
-                <div class="media__ph">Project Image</div>
+                <div class="media__ph">🖼️ Project Image</div>
               </div>
             </div>
 
             <div class="project__body">
               <div class="project__top">
                 <h3 class="card__title">{{ pr.name }}</h3>
-                <div class="muted">{{ pr.period }}</div>
+                <div class="chip chip--accent">{{ pr.role }}</div>
               </div>
+              <div class="muted" style="font-size:13px;">{{ pr.period }}</div>
 
               <p class="p">{{ pr.summary }}</p>
 
@@ -239,7 +312,7 @@ function toggleAbs(i) {
                 <span v-for="s in pr.stack ?? []" :key="s" class="tag">{{ s }}</span>
               </div>
 
-              <div class="actions actions--compact">
+              <div v-if="nonEmptyLinks(pr.links).length" class="actions actions--compact">
                 <a
                   v-for="l in nonEmptyLinks(pr.links)"
                   :key="l.key"
@@ -256,11 +329,11 @@ function toggleAbs(i) {
         </div>
       </section>
 
-      <!-- EXPERIENCE -->
-      <section id="experience" class="section">
+      <!-- ═══════════ EXPERIENCE ═══════════ -->
+      <section id="experience" class="section anim-up">
         <div class="section__header">
-          <h2 class="section__title">Experience</h2>
-          <p class="section__desc">实习与工作经历</p>
+          <h2 class="section__title">💼 工作/实习经历</h2>
+          <p class="section__desc">Experience</p>
         </div>
 
         <div class="stack">
@@ -268,33 +341,33 @@ function toggleAbs(i) {
             <div class="timeline__head">
               <div>
                 <h3 class="card__title">{{ e.company }}</h3>
-                <div class="muted">{{ e.team }}</div>
+                <div class="muted" style="font-size:13px;">{{ e.team }}</div>
               </div>
               <div class="timeline__right">
                 <div class="chip chip--accent">{{ e.title }}</div>
-                <div class="muted">{{ e.period }}</div>
+                <div class="muted" style="font-size:12px;">{{ e.period }}</div>
               </div>
             </div>
 
-            <ul class="bullets">
+            <ul class="bullets" style="margin-top:12px;">
               <li v-for="b in e.bullets" :key="b">{{ b }}</li>
             </ul>
           </article>
         </div>
       </section>
 
-      <!-- EDUCATION -->
-      <section id="education" class="section">
+      <!-- ═══════════ EDUCATION ═══════════ -->
+      <section id="education" class="section anim-up">
         <div class="section__header">
-          <h2 class="section__title">Education</h2>
-          <p class="section__desc">教育背景</p>
+          <h2 class="section__title">🎓 教育背景</h2>
+          <p class="section__desc">Education</p>
         </div>
 
         <div class="grid grid--2">
           <article v-for="ed in site.education" :key="ed.school" class="card">
             <h3 class="card__title">{{ ed.school }}</h3>
-            <div class="muted">{{ ed.degree }}</div>
-            <div class="muted">{{ ed.period }}</div>
+            <div class="muted" style="font-size:14px;">{{ ed.degree }}</div>
+            <div class="muted" style="font-size:13px;">{{ ed.period }}</div>
             <div class="spacer"></div>
             <ul class="bullets bullets--compact">
               <li v-for="n in ed.notes" :key="n">{{ n }}</li>
@@ -303,11 +376,11 @@ function toggleAbs(i) {
         </div>
       </section>
 
-      <!-- HONORS -->
-      <section id="honors" class="section">
+      <!-- ═══════════ HONORS ═══════════ -->
+      <section id="honors" class="section anim-up">
         <div class="section__header">
-          <h2 class="section__title">Honors</h2>
-          <p class="section__desc">荣誉与证书</p>
+          <h2 class="section__title">🏆 荣誉奖项</h2>
+          <p class="section__desc">Honors & Awards</p>
         </div>
 
         <div class="card">
@@ -317,26 +390,29 @@ function toggleAbs(i) {
         </div>
       </section>
 
-      <!-- CONTACT -->
-      <section id="contact" class="section">
+      <!-- ═══════════ CONTACT ═══════════ -->
+      <section id="contact" class="section anim-up">
         <div class="section__header">
-          <h2 class="section__title">Contact</h2>
-          <p class="section__desc">欢迎联系与交流</p>
+          <h2 class="section__title">📬 联系方式</h2>
+          <p class="section__desc">Contact</p>
         </div>
 
         <div class="grid grid--2">
           <div class="card">
-            <h3 class="card__title">Email</h3>
+            <h3 class="card__title">📧 邮箱</h3>
             <p class="p">
               <a class="link" :href="`mailto:${site.person.email}`">{{ site.person.email }}</a>
             </p>
             <div class="spacer"></div>
-            <h3 class="card__title">Phone</h3>
+            <h3 class="card__title">📱 电话</h3>
             <p class="p">{{ site.person.phone }}</p>
+            <div class="spacer"></div>
+            <h3 class="card__title">📍 所在地</h3>
+            <p class="p">{{ site.person.location }}</p>
           </div>
 
           <div class="card">
-            <h3 class="card__title">Links</h3>
+            <h3 class="card__title">🔗 链接</h3>
             <div class="actions actions--wrap">
               <a
                 v-for="l in nonEmptyLinks(site.person.links)"
@@ -349,7 +425,7 @@ function toggleAbs(i) {
                 {{ linkLabel[l.key] ?? l.key }}
               </a>
               <span v-if="nonEmptyLinks(site.person.links).length === 0" class="muted">
-                （暂无链接：你可以在 src/content/site.js 里补充）
+                （暂无链接）
               </span>
             </div>
           </div>
@@ -358,9 +434,19 @@ function toggleAbs(i) {
         <footer class="footer muted">
           <span>© {{ new Date().getFullYear() }} {{ site.person.name }}</span>
           <span class="sep">·</span>
-          <span>Built with Vue + Vite + GitHub Pages</span>
+          <span>Built with Vue 3 + Vite + GitHub Pages</span>
         </footer>
       </section>
     </div>
+
+    <!-- Back to Top -->
+    <button
+      class="back-to-top"
+      :class="{ visible: showBackTop }"
+      @click="scrollToTop"
+      aria-label="回到顶部"
+    >
+      ↑
+    </button>
   </div>
 </template>
