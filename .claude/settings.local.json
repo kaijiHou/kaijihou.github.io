@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx vite *)"
+      "Bash(npx vite *)",
+      "Bash(sed -i \"73s|image: '/papers/mcfa.jpg'|image: '/papers/mcfa.jpg'|\" \"D:\\\\kaijihou.github.io\\\\src\\\\content\\\\site.js\")",
+      "Bash(sed -i \"88s|image: '/papers/mcfa.jpg'|image: '/papers/spe.jpg'|\" \"D:\\\\kaijihou.github.io\\\\src\\\\content\\\\site.js\")",
+      "Bash(sed -i \"103s|image: '/papers/mcfa.jpg'|image: '/papers/viewdiff.jpg'|\" \"D:\\\\kaijihou.github.io\\\\src\\\\content\\\\site.js\")",
+      "Bash(sed -i \"120s|image: '/papers/mcfa.jpg'|image: '/projects/uav.jpg'|\" \"D:\\\\kaijihou.github.io\\\\src\\\\content\\\\site.js\")",
+      "Bash(sed -i \"135s|image: '/papers/mcfa.jpg'|image: '/projects/cpp_server.jpg'|\" \"D:\\\\kaijihou.github.io\\\\src\\\\content\\\\site.js\")"
     ]
   }
 }

@@ -70,9 +70,9 @@ export const site = {
       venue: 'Sensors (JCR Q2, SCI)',
       year: '2025',
       authors: 'Kaiji Hou, ...',
-      image: '',
+      image: '/papers/mcfa.jpg',
       abstract:
-        '通过充分挖掘无人机与卫星在同一场景下的互补视角信息，强化显著目标及其邻近区域的特征表达，并引入无人机视角独有的几何与尺度特性；在低空跨域泛化实验中较主流方法提升超 5.8%。',
+        '跨视角地理定位（CVGL）因无人机与卫星图像在视角和场景布局上的剧烈差异面临巨大挑战。本文提出多尺度级联与特征自适应对齐网络（MCFA），包含多尺度级联模块（MSCM）和特征自适应对齐模块（FAAM）。MSCM 通过关联与融合捕获目标邻近区域特征，增强模型鲁棒性；FAAM 通过动态加权特征对齐，自适应调整跨视角特征差异，实现无人机与卫星图像间的精准对齐。',
       links: {
         paper: 'https://www.mdpi.com/1424-8220/25/14/4519',
         code: '',
@@ -85,7 +85,7 @@ export const site = {
       venue: 'PRCV (CCF C)',
       year: '2025',
       authors: 'Kaiji Hou, ...',
-      image: '',
+      image: '/papers/spe.jpg',
       abstract:
         '提出基于 DINOv2 的 Structural Perception Enhancement 网络，挖掘细粒度区域特征并实现跨视角精准对齐；结合样本重平衡缓解卫星样本稀缺带来的训练不稳定，在 U1652 与 SUES-200 上提升 R@1 与 AP。',
       links: {
@@ -100,9 +100,9 @@ export const site = {
       venue: 'PRCV (CCF C)',
       year: '2025',
       authors: 'Kaiji Hou, ...',
-      image: '',
+      image: '/papers/viewdiff.jpg',
       abstract:
-        '提出几何感知双分支扩散框架，通过视点变换与空间引导补全协同、结构保持损失约束，实现遮挡区域真实补全与跨视角一致；在 LPIPS 等指标显著超过 SOTA。',
+        '多视角图像生成常因三维场景理解不足导致几何不一致与纹理不连续。本文提出 View-Diff，一个几何感知的双分支扩散框架。核心创新：1）双分支流水线——视角变换分支精确变换已知区域，空间引导模块利用场景几何特征引导未知区域真实补全，保持跨视角空间一致性；2）优化感知模块——引入结构保持感知损失，增强已知区域特征保持，提升整体一致性。',
       links: {
         paper: 'https://link.springer.com/chapter/10.1007/978-981-95-5628-1_33',
         code: '',
@@ -117,7 +117,7 @@ export const site = {
       name: '无人机定位系统（清华大学合作项目）',
       period: '2024.02 - 2025.04',
       role: '算法设计',
-      image: '',
+      image: '/projects/uav.jpg',
       summary:
         '使用深度学习模型完成无人机在 GNSS 拒止条件下的快速定位。通过构建无人机影像与高分辨率卫星底图匹配系统，高效智能地为用户定位出任意大小区域的影像，实现区域快速定位。',
       bullets: [
@@ -132,7 +132,7 @@ export const site = {
       name: 'C++ 智能图像展示与检索服务',
       period: '2025.02 - 2025.09',
       role: '项目负责人',
-      image: '',
+      image: '/projects/cpp_server.jpg',
       summary:
         '开发多主题图文展示平台，用户可上传文字和图片生成分主题相册。系统后台自动生成原图与压缩图以平衡展示速度与存储开销。集成本地大语言模型语义检索模块，支持用户以自然语言描述搜索相关主题相册。',
       bullets: [
@@ -149,7 +149,7 @@ export const site = {
       name: '基于 QT 的斗地主游戏',
       period: '2024.11 - 2025.02',
       role: '个人项目',
-      image: '',
+      image: '/projects/doudizhu.jpg',
       summary:
         '基于 Qt 框架独立设计并开发了一款完整的斗地主游戏，实现了发牌、叫地主、智能 AI 对战、动画特效、记牌器及语音提示在内的全套功能。',
       bullets: [
@@ -165,7 +165,7 @@ export const site = {
       name: '图像超分辨率系统（国家级创新训练项目）',
       period: '2021.08 - 2023.06',
       role: '项目负责人',
-      image: '',
+      image: '/projects/srgan.jpg',
       summary:
         '编号：202111072003。基于 SRGAN 架构，采用 ConvNeXt 作为特征提取骨干，设计双分支超分辨率流程并改进感知模块，系统优化训练策略，显著提升图像超分辨率的细节恢复与感知质量。',
       bullets: [
