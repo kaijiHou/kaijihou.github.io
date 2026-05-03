@@ -150,6 +150,12 @@ onUnmounted(() => {
       <section class="hero card anim-up">
         <div class="hero__left">
           <div class="avatar">
+            <img
+              src="/avatar/me.jpg"
+              alt="侯开纪"
+              class="avatar__img"
+              @error="$event.target.style.display='none'"
+            />
             <div class="avatar__placeholder">HK</div>
           </div>
         </div>
