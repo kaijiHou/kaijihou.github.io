@@ -1,14 +1,16 @@
 <script setup>
-import { computed, ref, onMounted, onUnmounted, nextTick } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { site } from './content/site'
 
 const route = useRoute()
+const router = useRouter()
 const isNovelPage = computed(() => route.path === '/novels')
 
 const active = ref('about')
 const showBackTop = ref(false)
 const activeProject = ref(0)
+const lightboxSrc = ref(null)
 
 function projectPos(i) {
   const diff = i - activeProject.value
@@ -48,17 +50,41 @@ const nav = computed(() => [
   { id: 'novels', label: '小说', isPage: true },
 ])
 
+let pendingScroll = null
+
 function scrollTo(id) {
   const n = nav.value.find(x => x.id === id)
   if (n && n.isPage) {
-    window.location.href = '/#/novels'
+    router.push('/novels')
     return
   }
   active.value = id
+  if (isNovelPage.value) {
+    pendingScroll = id
+    router.push('/')
+    return
+  }
   const el = document.getElementById(id)
   if (!el) return
   el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
+
+// After navigating back from novels page, scroll to the target section
+watch(isNovelPage, (val) => {
+  if (!val && pendingScroll) {
+    const target = pendingScroll
+    pendingScroll = null
+    nextTick(() => {
+      setTimeout(() => {
+        const el = document.getElementById(target)
+        if (el) {
+          active.value = target
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 150)
+    })
+  }
+})
 
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -278,7 +304,7 @@ onUnmounted(() => {
         <div class="stack">
           <article v-for="(p, i) in site.publications" :key="p.title" class="card pub">
             <div class="pub__media">
-              <div v-if="p.image" class="media">
+              <div v-if="p.image" class="media media--clickable" @click="lightboxSrc = p.image">
                 <img class="media__img" :src="p.image" :alt="p.title" />
               </div>
               <div v-else class="media media--placeholder">
@@ -520,5 +546,13 @@ onUnmounted(() => {
     >
       ↑
     </button>
+
+    <!-- Lightbox -->
+    <Teleport to="body">
+      <div v-if="lightboxSrc" class="lightbox" @click="lightboxSrc = null">
+        <button class="lightbox__close" @click="lightboxSrc = null" aria-label="关闭">✕</button>
+        <img :src="lightboxSrc" class="lightbox__img" @click.stop />
+      </div>
+    </Teleport>
   </div>
 </template>

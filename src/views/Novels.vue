@@ -35,7 +35,7 @@ onMounted(loadChapter)
 <template>
   <div class="container">
     <!-- Back link -->
-    <a href="/" class="btn btn--ghost" style="margin-bottom:16px;">← 返回首页</a>
+    <router-link to="/" class="btn btn--ghost" style="margin-bottom:16px;">← 返回首页</router-link>
 
     <!-- Section header -->
     <div class="section__header">
