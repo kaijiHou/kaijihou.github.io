@@ -1,9 +1,41 @@
 <script setup>
 import { computed, ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import { site } from './content/site'
+
+const route = useRoute()
+const isNovelPage = computed(() => route.path === '/novels')
 
 const active = ref('about')
 const showBackTop = ref(false)
+const activeProject = ref(0)
+
+function projectPos(i) {
+  const diff = i - activeProject.value
+  if (diff === 0) return 'center'
+  if (diff === -1 || diff === site.projects.length - 1) return 'left'
+  if (diff === 1 || diff === -(site.projects.length - 1)) return 'right'
+  return 'hidden'
+}
+
+function prevProject() {
+  activeProject.value = (activeProject.value - 1 + site.projects.length) % site.projects.length
+}
+function nextProject() {
+  activeProject.value = (activeProject.value + 1) % site.projects.length
+}
+function goProject(i) {
+  activeProject.value = i
+}
+
+let touchStartX = 0
+function onTouchStart(e) { touchStartX = e.touches[0].clientX }
+function onTouchEnd(e, i) {
+  const diff = touchStartX - e.changedTouches[0].clientX
+  if (Math.abs(diff) > 50) {
+    diff > 0 ? nextProject() : prevProject()
+  }
+}
 
 const nav = computed(() => [
   { id: 'about', label: '关于我' },
@@ -13,9 +45,15 @@ const nav = computed(() => [
   { id: 'education', label: '教育' },
   { id: 'honors', label: '荣誉' },
   { id: 'contact', label: '联系' },
+  { id: 'novels', label: '小说', isPage: true },
 ])
 
 function scrollTo(id) {
+  const n = nav.value.find(x => x.id === id)
+  if (n && n.isPage) {
+    window.location.href = '/#/novels'
+    return
+  }
   active.value = id
   const el = document.getElementById(id)
   if (!el) return
@@ -145,7 +183,9 @@ onUnmounted(() => {
       </div>
     </header>
 
-    <div id="top" class="container">
+    <router-view v-if="isNovelPage" />
+
+    <div v-else id="top" class="container">
       <!-- ═══════════ HERO ═══════════ -->
       <section class="hero card anim-up">
         <div class="hero__left">
@@ -317,23 +357,35 @@ onUnmounted(() => {
           <p class="section__desc">Projects</p>
         </div>
 
-        <div class="grid grid--2">
-          <article v-for="pr in site.projects" :key="pr.name" class="card project">
-            <div class="project__media">
-              <div v-if="pr.image" class="media">
-                <img class="media__img" :src="pr.image" :alt="pr.name" />
-              </div>
-              <div v-else class="media media--placeholder">
-                <div class="media__ph">🖼️ Project Image</div>
-              </div>
-            </div>
+        <div class="project-carousel">
+          <button class="carousel-btn carousel-btn--prev" @click="prevProject" aria-label="上一个项目">‹</button>
 
-            <div class="project__body">
-              <div class="project__top">
-                <h3 class="card__title">{{ pr.name }}</h3>
+          <div
+            class="project-carousel__stage"
+            @touchstart="onTouchStart"
+            @touchend="onTouchEnd"
+          >
+            <article
+              v-for="(pr, i) in site.projects"
+              :key="pr.name"
+              class="project-card"
+              :data-pos="projectPos(i)"
+            >
+              <div class="project-card__top">
+                <h3 class="project-card__title">{{ pr.name }}</h3>
                 <div class="chip chip--accent">{{ pr.role }}</div>
               </div>
-              <div class="muted" style="font-size:13px;">{{ pr.period }}</div>
+              <div class="muted" style="font-size:12.5px;">{{ pr.period }}</div>
+
+              <div class="project-card__media">
+                <img
+                  v-if="pr.image"
+                  :src="pr.image"
+                  :alt="pr.name"
+                  @error="$event.target.style.display='none'"
+                />
+                <div v-else class="project-card__media-placeholder">🖼️ Project Image</div>
+              </div>
 
               <p class="p">{{ pr.summary }}</p>
 
@@ -357,8 +409,21 @@ onUnmounted(() => {
                   {{ linkLabel[l.key] ?? l.key }}
                 </a>
               </div>
-            </div>
-          </article>
+            </article>
+          </div>
+
+          <button class="carousel-btn carousel-btn--next" @click="nextProject" aria-label="下一个项目">›</button>
+        </div>
+
+        <div class="carousel-dots">
+          <button
+            v-for="(pr, i) in site.projects"
+            :key="'dot-' + i"
+            class="carousel-dot"
+            :class="{ 'is-active': activeProject === i }"
+            @click="goProject(i)"
+            :aria-label="'项目 ' + (i + 1)"
+          ></button>
         </div>
       </section>
 
@@ -445,8 +510,9 @@ onUnmounted(() => {
       </section>
     </div>
 
-    <!-- Back to Top -->
+    <!-- Back to Top (main page only) -->
     <button
+      v-if="!isNovelPage"
       class="back-to-top"
       :class="{ visible: showBackTop }"
       @click="scrollToTop"
