@@ -98,7 +98,7 @@ function nonEmptyLinks(obj) {
 }
 
 const linkLabel = {
-  github: 'GitHub',
+  github: 'GitHub 链接',
   scholar: 'Scholar',
   cv: 'CV',
   homepage: 'Homepage',
@@ -423,16 +423,16 @@ onUnmounted(() => {
                 <span v-for="s in pr.stack ?? []" :key="s" class="tag">{{ s }}</span>
               </div>
 
-              <div v-if="nonEmptyLinks(pr.links).length" class="actions actions--compact">
+              <div v-if="nonEmptyLinks(pr.links).length" class="project-card__links">
                 <a
                   v-for="l in nonEmptyLinks(pr.links)"
                   :key="l.key"
-                  class="btn btn--small"
+                  class="btn btn--primary btn--small"
                   :href="l.href"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {{ linkLabel[l.key] ?? l.key }}
+                  🔗 {{ linkLabel[l.key] ?? l.key }}
                 </a>
               </div>
             </article>
