@@ -1,4 +1,4 @@
-![选择题 封面](./cover.png)
+![选择题 封面](/novels/grade-mystery/cover.png)
 
 # 选择题
 
