@@ -130,7 +130,7 @@ export const site = {
         '历史记录大屏展示，支持检测数据统计、趋势分析与结果回溯。',
       ],
       stack: ['Vue 3', 'YOLOv11', 'Qwen3-VL', 'Python', 'FastAPI', 'ECharts'],
-      links: {},
+      links: { github: 'https://github.com/kaijiHou/YQDet' },
     },
     {
       name: '无人机定位系统（清华大学合作项目）',
@@ -145,7 +145,7 @@ export const site = {
         '基于上述研究成果，以第一作者在 SCI 期刊发表论文。',
       ],
       stack: ['PyTorch', 'DINOv3/GIM', 'Jittor', 'Ascend', 'NPU'],
-      links: {},
+      links: { github: 'https://github.com/kaijiHou/SPE-Net' },
     },
     {
       name: 'C++ 智能图像展示与检索服务',
@@ -193,7 +193,7 @@ export const site = {
         '发表论文《基于 SRGAN 的图像超分辨率方法研究》，并完成申请书、技术文档、结项报告撰写。',
       ],
       stack: ['PyTorch', 'SRGAN', 'ConvNeXt', 'Django', 'Linux'],
-      links: {},
+      links: { project: 'http://gjcxcy.bjtu.edu.cn/NewLXItemListForStudentDetail.aspx?ItemNo=744392&year=2021&type=student&IsLXItem=0' },
     },
   ],
 
