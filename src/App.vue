@@ -12,6 +12,30 @@ const showBackTop = ref(false)
 const activeProject = ref(0)
 const lightboxSrc = ref(null)
 
+// ── Custom hero cursor ──
+const heroCursorStyle = ref({ left: '0px', top: '0px', opacity: 0 })
+const heroCursorHovering = ref(false)
+
+function onHeroMouseMove(e) {
+  heroCursorStyle.value = {
+    left: e.clientX + 'px',
+    top: e.clientY + 'px',
+    opacity: 1,
+  }
+}
+
+function onHeroMouseLeave() {
+  heroCursorStyle.value = { left: '0px', top: '0px', opacity: 0 }
+}
+
+function onHeroInteractiveEnter() {
+  heroCursorHovering.value = true
+}
+
+function onHeroInteractiveLeave() {
+  heroCursorHovering.value = false
+}
+
 function projectPos(i) {
   const diff = i - activeProject.value
   if (diff === 0) return 'center'
@@ -213,7 +237,19 @@ onUnmounted(() => {
 
     <div v-else id="top" class="container">
       <!-- ═══════════ HERO ═══════════ -->
-      <section class="hero card anim-up">
+      <section
+        class="hero card anim-up"
+        @mousemove="onHeroMouseMove"
+        @mouseleave="onHeroMouseLeave"
+        :style="{ '--hero-mouse-x': heroCursorStyle.left, '--hero-mouse-y': heroCursorStyle.top }"
+      >
+        <!-- Custom cursor dot -->
+        <div
+          class="hero-cursor"
+          :class="{ 'is-hovering': heroCursorHovering }"
+          :style="heroCursorStyle"
+        ></div>
+
         <div class="hero__left">
           <div class="avatar">
             <img
@@ -234,21 +270,37 @@ onUnmounted(() => {
           <p class="hero__tagline">{{ site.person.tagline }}</p>
 
           <div class="hero__meta">
-            <div class="meta-item">
+            <div
+              class="meta-item"
+              @mouseenter="onHeroInteractiveEnter"
+              @mouseleave="onHeroInteractiveLeave"
+            >
               <span class="meta-k">📍</span>
               <span class="meta-v">{{ site.person.location }}</span>
             </div>
-            <div class="meta-item">
+            <div
+              class="meta-item"
+              @mouseenter="onHeroInteractiveEnter"
+              @mouseleave="onHeroInteractiveLeave"
+            >
               <span class="meta-k">📧</span>
               <a class="meta-v link" :href="`mailto:${site.person.email}`">{{ site.person.email }}</a>
             </div>
-            <div class="meta-item">
+            <div
+              class="meta-item"
+              @mouseenter="onHeroInteractiveEnter"
+              @mouseleave="onHeroInteractiveLeave"
+            >
               <span class="meta-k">📱</span>
               <span class="meta-v">{{ site.person.phone }}</span>
             </div>
           </div>
 
-          <div class="actions">
+          <div
+            class="actions"
+            @mouseenter="onHeroInteractiveEnter"
+            @mouseleave="onHeroInteractiveLeave"
+          >
             <a
               v-for="l in nonEmptyLinks(site.person.links)"
               :key="l.key"
