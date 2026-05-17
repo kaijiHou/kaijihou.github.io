@@ -105,7 +105,7 @@ const linkLabel = {
   paper: '论文',
   arxiv: 'arXiv',
   code: '代码',
-  project: '项目',
+  project: '项目链接',
   repo: '仓库',
   demo: 'Demo',
 }
