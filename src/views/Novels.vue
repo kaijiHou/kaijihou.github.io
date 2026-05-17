@@ -1,8 +1,10 @@
 <script setup>
 import { ref, watch, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { marked } from 'marked'
 import { novels } from '../content/novels.js'
 
+const router = useRouter()
 const currentNovel = ref(novels[0])
 const currentChapter = ref(currentNovel.value.chapters[0])
 const chapterContent = ref('')
@@ -39,7 +41,7 @@ onMounted(loadChapter)
 
 <template>
   <div class="container">
-    <a href="/#/" class="btn btn--ghost" style="margin-bottom:16px;">← 返回首页</a>
+    <button class="btn btn--ghost" style="margin-bottom:16px;" @click="router.push('/')">← 返回首页</button>
 
     <div class="section__header">
       <h2 class="section__title">📖 小说</h2>
