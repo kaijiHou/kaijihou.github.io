@@ -159,45 +159,36 @@ ul { list-style: none; }
   grid-template-columns: 120px 1fr;
   gap: 24px;
   align-items: center;
-  background: var(--bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   position: relative;
-  border: 2px solid transparent;
-  background-clip: padding-box;
   cursor: none;
-  isolation: isolate;
-}
 
-/* Gradient border via pseudo-element */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  z-index: -2;
-  border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    var(--gradient-1),
-    var(--gradient-2),
-    var(--gradient-3),
-    var(--gradient-4),
-    var(--gradient-1)
-  );
-  background-size: 400% 400%;
+  /* Gradient border + white background — two-layer background clip */
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(
+      135deg,
+      var(--gradient-1),
+      var(--gradient-2),
+      var(--gradient-3),
+      var(--gradient-4),
+      var(--gradient-1)
+    ) border-box;
+  background-size: auto, 400% 400%;
   animation: hero-border-rotate 6s ease infinite;
-  opacity: 0.85;
-  transition: opacity 0.4s ease;
+  animation-fill-mode: forwards;
 }
 
-.hero:hover::before {
-  opacity: 1;
+.hero:hover {
+  box-shadow: var(--shadow-md);
 }
 
 @keyframes hero-border-rotate {
   0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  50% { background-position: 0% 50%, 100% 50%; }
+  100% { background-position: 0% 50%, 0% 50%; }
 }
 
 /* Avatar with glowing ring */
