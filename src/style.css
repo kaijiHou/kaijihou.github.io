@@ -167,7 +167,6 @@ ul { list-style: none; }
   background-clip: padding-box;
   cursor: none;
   isolation: isolate;
-  overflow: hidden;
 }
 
 /* Gradient border via pseudo-element */
@@ -193,22 +192,6 @@ ul { list-style: none; }
 
 .hero:hover::before {
   opacity: 1;
-}
-
-/* Inner glow overlay */
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background: radial-gradient(
-    800px circle at var(--hero-mouse-x, 50%) var(--hero-mouse-y, 50%),
-    rgba(0, 112, 243, 0.06),
-    transparent 40%
-  );
-  pointer-events: none;
-  transition: opacity 0.3s ease;
 }
 
 @keyframes hero-border-rotate {

@@ -258,7 +258,6 @@ onUnmounted(() => {
               class="avatar__img"
               @error="$event.target.style.display='none'"
             />
-            <div class="avatar__placeholder">HK</div>
           </div>
         </div>
 
