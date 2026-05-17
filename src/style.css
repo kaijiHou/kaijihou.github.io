@@ -162,7 +162,6 @@ ul { list-style: none; }
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   position: relative;
-  cursor: none;
 
   /* Gradient border + white background — two-layer background clip */
   border: 2px solid transparent;
@@ -317,27 +316,6 @@ ul { list-style: none; }
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-}
-
-/* Custom cursor dot (hero area) */
-.hero-cursor {
-  position: fixed;
-  pointer-events: none;
-  z-index: 999;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: rgba(0, 112, 243, 0.3);
-  mix-blend-mode: difference;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
-  box-shadow: 0 0 20px rgba(0, 112, 243, 0.4), 0 0 60px rgba(120, 40, 200, 0.2);
-}
-.hero-cursor.is-hovering {
-  width: 32px;
-  height: 32px;
-  background: rgba(120, 40, 200, 0.4);
-  box-shadow: 0 0 30px rgba(120, 40, 200, 0.5), 0 0 80px rgba(0, 112, 243, 0.3);
 }
 
 /* ===========================
@@ -1152,6 +1130,4 @@ ul { list-style: none; }
   .carousel-btn { width: 32px; height: 32px; font-size: 14px; }
 
   /* Restore default cursor on touch devices */
-  .hero { cursor: auto; }
-  .hero-cursor { display: none; }
 }
