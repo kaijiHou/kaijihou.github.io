@@ -267,7 +267,7 @@ onUnmounted(() => {
               {{ linkLabel[l.key] ?? l.key }}
             </a>
             <button class="btn" @click="scrollTo('publications')">📄 查看论文</button>
-            <a class="btn" href="https://github.com/BistuCS" target="_blank" rel="noreferrer">🚀 查看项目</a>
+            <a class="btn" href="https://github.com/kaijiHou?tab=repositories" target="_blank" rel="noreferrer">🚀 查看项目</a>
             <a class="btn" @click="router.push('/novels')">📖 小说</a>
           </div>
 

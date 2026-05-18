@@ -3,11 +3,11 @@ export const site = {
     name: '侯开纪',
     nameEn: 'Kaiji Hou',
     tagline: '跨视角地理定位 · 视觉生成 · 大模型工程',
-    location: '北京 / 武汉',
+    location: '武汉',
     email: '1377295397@qq.com',
     phone: '18963972706',
     links: {
-      github: 'https://github.com/BistuCS',
+      github: 'https://github.com/kaijiHou?tab=repositories',
       scholar: '',
       cv: '',
     },
@@ -230,7 +230,7 @@ export const site = {
       school: '北京信息科技大学',
       degree: '计算机技术（硕士）',
       period: '2023.09 - 2026.06（北京）',
-      notes: ['校一等奖学金'],
+      notes: ['校优秀毕业生', '校优秀硕士论文', '校一等奖学金'],
     },
     {
       school: '江汉大学',
