@@ -21,7 +21,7 @@ export const site = {
       },
       {
         title: '大模型与CV项目经验',
-        desc: '深入参与大模型微调（LLaMA-Factory + LoRA）、部署（vLLM）与 AI Agent 工作流编排（LangChain/LangGraph），熟悉 SAM3、ComfyUI 等自动化标注工具链，掌握从数据构建到模型落地的全流程；在无人机定位、图像超分辨率等 CV 任务中提出创新模块并实现性能显著提升。',
+        desc: '深入参与大模型微调（LLaMA-Factory + LoRA）、高性能部署（vLLM）与 AI Agent 工作流编排（LangChain/LangGraph），掌握 YOLOv8/v11 全流程（训练→ONNX 导出→推理部署）及 SAM3、ComfyUI 自动化标注工具链；在无人机跨视角定位（DINOv3、CLIP）、图像超分辨率（SRGAN）、多视角生成（Diffusion）及多模态语义分析（Qwen3-VL）等 CV 任务中提出创新模块，实现性能显著提升。',
         icon: '🤖',
       },
       {
