@@ -5,6 +5,12 @@ import { marked } from 'marked'
 import { novels } from '../content/novels.js'
 
 const router = useRouter()
+
+function goHome() {
+  window.location.hash = '#/'
+  window.location.reload()
+}
+
 const currentNovel = ref(novels[0])
 const currentChapter = ref(currentNovel.value.chapters[0])
 const chapterContent = ref('')
@@ -41,7 +47,7 @@ onMounted(loadChapter)
 
 <template>
   <div class="container">
-    <button class="btn btn--ghost" style="margin-bottom:16px;" @click="router.push('/')">← 返回首页</button>
+    <button class="btn btn--ghost" style="margin-bottom:16px;" @click="goHome">← 返回首页</button>
 
     <div class="section__header">
       <h2 class="section__title">📖 小说</h2>
