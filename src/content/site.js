@@ -21,12 +21,12 @@ export const site = {
       },
       {
         title: '大模型与CV项目经验',
-        desc: '深入参与大模型微调（LLaMA-Factory + LoRA）、高性能部署（vLLM）与 AI Agent 工作流编排（LangChain/LangGraph），掌握 YOLOv8/v11 全流程（训练→ONNX 导出→推理部署）及 SAM3、ComfyUI 自动化标注工具链；在无人机跨视角定位（DINOv3、CLIP）、图像超分辨率（SRGAN）、多视角生成（Diffusion）及多模态语义分析（Qwen3-VL）等 CV 任务中提出创新模块，实现性能显著提升。',
+        desc: '深入参与大模型微调（LLaMA-Factory + LoRA）、高性能部署（vLLM）与 AI Agent 工作流编排（LangChain/LangGraph），熟练使用 YOLOv8/v11 全流程（训练→ONNX 导出→推理部署）及 SAM3、ComfyUI 自动化标注工具链；具备无人机跨视角定位（DINOv3、CLIP）、图像超分辨率（SRGAN）、多视角生成（Diffusion）及多模态语义分析（Qwen3-VL）等 CV 任务的实际项目经验。',
         icon: '🤖',
       },
       {
         title: '全栈工程与系统开发能力',
-        desc: '熟练掌握 C++、Python 等语言，具备 HTTP 协议栈、Redis 缓存、多线程、OpenCV 等系统开发与优化经验，能独立完成高并发服务与智能系统搭建。',
+        desc: '熟练掌握 C++、Python 等语言，具备 HTTP 协议栈、Nginx 反向代理、Redis 缓存、多线程、OpenCV、ONNX 模型部署、Docker 容器化、K8s 编排等系统开发与优化经验，能独立完成高并发服务与智能系统搭建。',
         icon: '⚙️',
       },
       {
@@ -36,7 +36,7 @@ export const site = {
       },
       {
         title: '综合素养与团队协作',
-        desc: '担任班长、项目负责人等职务，获得"校优秀干部"等荣誉，具备良好的组织协调、沟通表达与多任务推进能力。在校期间志愿者时长 120 小时。',
+        desc: '担任班长、项目负责人等职务，获得"校优秀干部"等荣誉。带领团队完成项目标书编写与技术方案设计，主导算法选型与整体架构设计，具备良好的组织协调、沟通表达与多任务推进能力。在校期间志愿者时长 120 小时。',
         icon: '🤝',
       },
     ],
