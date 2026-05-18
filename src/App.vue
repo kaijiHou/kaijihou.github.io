@@ -404,6 +404,7 @@ onUnmounted(() => {
               :key="pr.name"
               class="project-card"
               :data-pos="projectPos(i)"
+              :data-project-index="i"
             >
               <div class="project-card__top">
                 <h3 class="project-card__title">{{ pr.name }}</h3>

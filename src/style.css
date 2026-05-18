@@ -600,8 +600,10 @@ ul { list-style: none; }
 .project-card {
   width: 100%;
   max-width: 560px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, var(--pc-1, #0070f3), var(--pc-2, #7928ca)) border-box;
+  border: 2px solid transparent;
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: var(--shadow);
@@ -613,6 +615,13 @@ ul { list-style: none; }
   will-change: transform, opacity;
 }
 
+/* Per-project gradient border colors */
+.project-card[data-project-index="0"] { --pc-1: #0070f3; --pc-2: #00dfd8; }
+.project-card[data-project-index="1"] { --pc-1: #7928ca; --pc-2: #f472b6; }
+.project-card[data-project-index="2"] { --pc-1: #10b981; --pc-2: #06b6d4; }
+.project-card[data-project-index="3"] { --pc-1: #f97316; --pc-2: #ef4444; }
+.project-card[data-project-index="4"] { --pc-1: #ec4899; --pc-2: #8b5cf6; }
+
 /* Center — in flow, sizes the stage naturally */
 .project-card[data-pos="center"] {
   position: relative;
@@ -620,7 +629,6 @@ ul { list-style: none; }
   transform: scale(1);
   opacity: 1;
   box-shadow: var(--shadow-lg);
-  border-color: var(--border-hover);
 }
 
 /* Left & Right — absolute, overlay on center */
