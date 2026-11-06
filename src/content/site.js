@@ -199,6 +199,24 @@ export const site = {
 
   experience: [
     {
+      company: '武汉环声海洋科技有限公司',
+      companyAlias: '武汉环达电子科技有限公司',
+      team: '',
+      title: '算法工程师',
+      period: '2026.07 - 至今（武汉）',
+      current: true,
+      summary: '面向海洋声呐智能应用与企业 Agent 平台，负责 Qt 显控软件、侧扫声呐视觉检测及大模型应用开发，推进算法能力与业务软件的集成落地。',
+      bullets: [
+        '声呐上位机显控：基于 Qt 开发声呐数据上位机软件，依据甲方数据通信协议完成通信接口适配、数据接入与可视化呈现，组织显控交互流程，打通声呐数据到客户端显示的处理链路。',
+        '侧扫声呐目标检测：围绕侧扫声呐图像检测任务，使用 RF-DETR、DEIMv2、YOLO 开展算法开发与应用适配，衔接图像输入、模型推理和检测结果输出，推进视觉检测能力的业务集成。',
+        '企业 Agent 平台开发：负责 HS-AI / HSCode 桌面 Agent 平台相关开发，基于 Strata 部署 Qwen3.8-Flash-Next 并完成模型服务接入，衔接任务对话、模型调用和工具执行，支持公司内部智能化应用。',
+        '工具子模块集成：将文件、浏览器、终端、Git、代码审查等功能模块嵌入 Agent 工作台，完成工具入口、模块接口与宿主应用的集成适配，形成任务处理与结果反馈的连贯工作流程。',
+      ],
+      stack: ['Qt', '声呐数据显控', 'RF-DETR', 'DEIMv2', 'YOLO', 'Qwen3.8-Flash-Next', 'Strata', 'Agent', '模块集成'],
+      image: '/experience/hs-ai-platform.png',
+      imageAlt: 'HS-AI / HSCode 企业 Agent 平台：任务工作区与工具中心',
+    },
+    {
       company: '北京旷视科技有限公司',
       team: '云服务事业部（CSG）',
       title: '大模型算法实习生',

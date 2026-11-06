@@ -7,8 +7,8 @@ import { novels } from '../content/novels.js'
 const router = useRouter()
 
 function goHome() {
-  window.location.hash = '#/'
-  window.location.reload()
+  router.push('/')
+  window.scrollTo(0, 0)
 }
 
 const currentNovel = ref(novels[0])
@@ -50,7 +50,7 @@ onMounted(loadChapter)
     <button class="btn btn--ghost" style="margin-bottom:16px;" @click="goHome">← 返回首页</button>
 
     <div class="section__header">
-      <h2 class="section__title">📖 小说</h2>
+      <h2 class="section__title">故事与创作</h2>
       <p class="section__desc">Novels</p>
     </div>
 
@@ -58,7 +58,7 @@ onMounted(loadChapter)
       <!-- Sidebar -->
       <aside class="novel-sidebar">
         <!-- Novel list -->
-        <div class="novel-sidebar__title">📚 作品列表</div>
+        <div class="novel-sidebar__title">作品列表</div>
         <button
           v-for="nv in novels"
           :key="nv.id"
@@ -73,7 +73,7 @@ onMounted(loadChapter)
         <hr class="novel-sidebar__hr" />
 
         <!-- Chapter list -->
-        <div class="novel-sidebar__title">📑 {{ currentNovel.title }} · 目录</div>
+        <div class="novel-sidebar__title">{{ currentNovel.title }} · 目录</div>
         <button
           v-for="ch in currentNovel.chapters"
           :key="ch.id"
@@ -86,7 +86,7 @@ onMounted(loadChapter)
       </aside>
 
       <!-- Content -->
-      <main class="novel-content">
+      <main id="novel-main" class="novel-content" tabindex="-1">
         <div v-if="loading" class="novel-empty">
           <p>加载中...</p>
         </div>

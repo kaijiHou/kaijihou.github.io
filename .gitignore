@@ -3,3 +3,7 @@ dist/
 .claude/
 CLAUDE.md
 xiaoshuo.txt
+design/2026-11-06-redesign/runtime/*
+!design/2026-11-06-redesign/runtime/目录说明.md
+design/2026-11-06-redesign/build/*
+!design/2026-11-06-redesign/build/目录说明.md
