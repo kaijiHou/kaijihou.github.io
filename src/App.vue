@@ -159,12 +159,14 @@ onUnmounted(() => {
       <section id="publications" class="section" aria-labelledby="publications-title">
         <div class="section-heading"><div><h2 id="publications-title">研究与论文</h2><p>关于视觉、空间与生成的探索。</p></div><span class="section-note">{{ site.publications.length }} 篇代表工作</span></div>
         <div class="publication-list">
-          <article v-for="paper in site.publications" :key="paper.title" class="publication">
+          <article v-for="(paper, index) in site.publications" :key="paper.title" class="publication" :aria-labelledby="'paper-title-' + index">
+            <header class="paper-heading">
+              <div class="paper-meta"><span>{{ paper.venue }}</span><time>{{ paper.year }}</time></div>
+              <h3 :id="'paper-title-' + index"><a :href="paper.links.paper" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a></h3>
+              <p class="paper-authors">{{ paper.authors }}</p>
+            </header>
             <button class="paper-image" @click="openImage(paper.image, paper.title)" :aria-label="'放大论文配图：' + paper.title"><img :src="paper.image" :alt="paper.title + '方法图'" loading="lazy" width="280" height="190" /><span>查看配图 <span aria-hidden="true">↗</span></span></button>
             <div class="paper-body">
-              <div class="paper-meta"><span>{{ paper.venue }}</span><time>{{ paper.year }}</time></div>
-              <h3><a :href="paper.links.paper" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a></h3>
-              <p class="paper-authors">{{ paper.authors }}</p>
               <p class="paper-intro">{{ paper.abstract.split('。')[0] }}。</p>
               <p class="paper-highlight">{{ paper.highlight }}</p>
               <div class="paper-actions"><a v-for="link in links(paper.links)" :key="link.key" class="text-link" :href="link.href" target="_blank" rel="noopener noreferrer">{{ linkLabel[link.key] ?? link.key }} <span aria-hidden="true">↗</span></a></div>
