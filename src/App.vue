@@ -7,7 +7,7 @@ const route = useRoute()
 const router = useRouter()
 const isNovelPage = computed(() => route.path === '/novels')
 const menuOpen = ref(false)
-const theme = ref('dark')
+const theme = ref('light')
 const activeSection = ref('')
 const activeProject = ref(0)
 const project = computed(() => site.projects[activeProject.value])
@@ -130,10 +130,22 @@ onUnmounted(() => {
           </aside>
         </div>
         <nav class="home-directory" aria-label="首页内容入口">
-          <button class="directory-research" @click="navigate('publications')"><span class="directory-label">论文研究 <span aria-hidden="true">↗</span></span><strong>{{ site.publications.length }} <small>篇代表论文</small></strong><p>跨视角定位与多视角生成</p></button>
-          <button class="directory-projects" @click="navigate('projects')"><span class="directory-label">项目实践 <span aria-hidden="true">↗</span></span><strong>{{ site.projects.length }} <small>个技术项目</small></strong><p>从视觉模型到完整应用</p></button>
-          <button class="directory-experience" @click="navigate('experience')"><span class="directory-label">工作经历 <span aria-hidden="true">↗</span></span><strong>{{ site.experience.length }} <small>段工作经历</small></strong><p>大模型算法与工程实践</p></button>
-          <button class="directory-writing" @click="navigate('novels')"><span class="directory-label">小说创作 <span aria-hidden="true">↗</span></span><strong class="directory-book">故事与创作</strong><p>工作之外，另一个世界</p></button>
+          <button class="directory-research" @click="navigate('publications')">
+            <span class="directory-heading"><span class="directory-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 5 8 1m-10 3-1 7m4 3 7-2m3-7-1 4M8 9l7 6"/><circle cx="6" cy="6" r="3"/><circle cx="19" cy="7" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="18" cy="17" r="3"/></svg></span><span class="directory-label">论文研究</span><span class="directory-arrow" aria-hidden="true">↗</span></span>
+            <strong>{{ site.publications.length }} <small>篇代表论文</small></strong><p>跨视角定位与多视角生成</p>
+          </button>
+          <button class="directory-projects" @click="navigate('projects')">
+            <span class="directory-heading"><span class="directory-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 10 5-10 5L2 8l10-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></span><span class="directory-label">项目实践</span><span class="directory-arrow" aria-hidden="true">↗</span></span>
+            <strong>{{ site.projects.length }} <small>个技术项目</small></strong><p>算法研发、软件与系统交付</p>
+          </button>
+          <button class="directory-experience" @click="navigate('experience')">
+            <span class="directory-heading"><span class="directory-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="3"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12a21 21 0 0 0 18 0m-9 0v4"/></svg></span><span class="directory-label">工作经历</span><span class="directory-arrow" aria-hidden="true">↗</span></span>
+            <strong>{{ site.experience.length }} <small>段工作经历</small></strong><p>大模型算法与工程实践</p>
+          </button>
+          <button class="directory-writing" @click="navigate('novels')">
+            <span class="directory-heading"><span class="directory-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5c-3-2-7-2-10 0v15c3-2 7-2 10 0 3-2 7-2 10 0V5c-3-2-7-2-10 0Zm0 0v15M5 8h3m-3 4h3m8-4h3m-3 4h3"/></svg></span><span class="directory-label">小说创作</span><span class="directory-arrow" aria-hidden="true">↗</span></span>
+            <strong class="directory-book">故事与创作</strong><p>工作之外，另一个世界</p>
+          </button>
         </nav>
       </section>
     </div>
@@ -163,7 +175,7 @@ onUnmounted(() => {
       </section>
 
       <section id="projects" class="section" aria-labelledby="projects-title">
-        <div class="section-heading"><div><h2 id="projects-title">把想法，做成项目</h2><p>从模型训练到系统落地。</p></div><a class="text-link section-note" :href="site.person.links.github" target="_blank" rel="noopener noreferrer">更多代码 ↗</a></div>
+        <div class="section-heading"><div><h2 id="projects-title">项目与工程实践</h2><p>企业项目与个人实践，涵盖算法研发、软件开发与系统交付。</p></div><a class="text-link section-note" :href="site.person.links.github" target="_blank" rel="noopener noreferrer">更多代码 ↗</a></div>
         <div class="project-board">
           <div class="project-picker" aria-label="选择项目"><button v-for="(item, index) in site.projects" :key="item.name" :aria-pressed="activeProject === index" :class="{ 'is-active': activeProject === index }" @click="activeProject = index"><span>{{ item.name.split('（')[0] }}</span><span aria-hidden="true">↗</span></button></div>
           <article class="project-detail" :key="project.name">
