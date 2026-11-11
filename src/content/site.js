@@ -68,6 +68,19 @@ export const site = {
 
   publications: [
     {
+      title: 'Direction-Robust UAV–Satellite Cross-View Geo-Localization via Spatial Adaptive Alignment and Circular Adjacent-Direction Gated Interaction',
+      venue: 'Drones',
+      year: '2026',
+      status: '已录用 · 2026.11.09',
+      authors: 'Yonghao Yang, Kaiji Hou, Siyu Zhu, Qiang Tong, Xiulei Liu, Xuhong Liu',
+      image: '/papers/drones-direction-robust.png',
+      abstract:
+        '面向无人机与卫星图像之间的跨视角差异及无人机观测方向变化，本文提出从空间对齐到方向交互的渐进式定位框架。空间自适应对齐模块（SAAM）通过跨维度注意力与细粒度一致性约束缩小视角间特征差异；方向感知模块（DAM）将径向特征组织为环形序列，通过相邻方向的通道级门控交互建模局部连续性，同时保留方向特异性。在 University-1652 上，三次独立训练的 UAV→卫星检索 R@1/AP 均值为 94.63%/95.46%，卫星→UAV 为 96.86%/93.97%；在 18 个无人机观测方向区间保持稳定表现，并验证了向 SUES-200 未见区域与飞行高度的直接迁移能力。',
+      links: {},
+      tags: ['UAV–Satellite', 'Feature Alignment', 'Direction Awareness'],
+      highlight: 'University-1652：R@1 94.63% · AP 95.46%（UAV→卫星，三次均值）',
+    },
+    {
       title:
         'MCFA: Multi-Scale Cascade and Feature Adaptive Alignment Network for Cross-View Geo-Localization',
       venue: 'Sensors (JCR Q2, SCI)',

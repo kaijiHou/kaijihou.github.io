@@ -3,6 +3,8 @@ dist/
 .claude/
 CLAUDE.md
 xiaoshuo.txt
+/public/papers/drones-direction-robust.pdf
+/public/papers/drones-4573732.pdf
 design/2026-11-06-redesign/runtime/*
 !design/2026-11-06-redesign/runtime/目录说明.md
 design/2026-11-06-redesign/build/*

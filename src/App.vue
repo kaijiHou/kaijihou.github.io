@@ -113,6 +113,33 @@ onUnmounted(() => {
 
   <main v-else id="main-content" tabindex="-1">
     <div id="top" class="hero-wrap">
+      <div class="hero-backdrop" aria-hidden="true">
+        <div class="hero-coordinate-grid"></div>
+        <svg class="hero-orbits" viewBox="0 0 1600 900" fill="none" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="hero-orbit-ink" x1="0" y1="900" x2="1600" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#21b9a0"/><stop offset=".5" stop-color="#258ccf"/><stop offset="1" stop-color="#45c5d9"/></linearGradient>
+            <radialGradient id="hero-atmosphere"><stop stop-color="#58d8ed" stop-opacity=".2"/><stop offset="1" stop-color="#58d8ed" stop-opacity="0"/></radialGradient>
+          </defs>
+          <ellipse cx="1330" cy="160" rx="460" ry="430" fill="url(#hero-atmosphere)"/>
+          <g stroke="url(#hero-orbit-ink)">
+            <g opacity=".25" stroke-width="1">
+              <ellipse cx="1310" cy="185" rx="390" ry="265" transform="rotate(-28 1310 185)"/>
+              <ellipse cx="1310" cy="185" rx="455" ry="305" transform="rotate(-28 1310 185)"/>
+              <ellipse cx="1310" cy="185" rx="520" ry="345" transform="rotate(-28 1310 185)" stroke-dasharray="4 12"/>
+              <path d="M-100 620C170 425 260 780 540 586S978 480 1135 285 1460 230 1690 20"/>
+              <path d="M-100 649C170 454 260 809 540 615S978 509 1135 314 1460 259 1690 49" opacity=".45"/>
+              <path d="M50 0v120l100 72v180m1250 95h-120l-90 90h-100m-930 250h180l50-50h170" stroke-dasharray="4 7"/>
+            </g>
+            <path class="hero-orbit-flow" d="M-100 620C170 425 260 780 540 586S978 480 1135 285 1460 230 1690 20" stroke-width="2" stroke-dasharray="60 1700" opacity=".75"/>
+            <g stroke-width="1.5" fill="#eefaff">
+              <circle cx="150" cy="372" r="5"/><circle cx="540" cy="586" r="5"/><circle cx="1090" cy="557" r="5"/><circle cx="1440" cy="410" r="5"/>
+              <g class="hero-beacon"><circle cx="150" cy="372" r="14" opacity=".5"/><circle cx="540" cy="586" r="15" opacity=".4"/><circle cx="1440" cy="410" r="16" opacity=".4"/></g>
+              <path d="M65 185h26m-13-13v26m1325 413h26m-13-13v26M330 65h18m-9-9v18" opacity=".65"/>
+            </g>
+          </g>
+        </svg>
+        <div class="hero-scan"></div>
+      </div>
       <section class="hero page-width" aria-labelledby="hero-title">
         <div class="hero-introduction">
           <div class="hero-copy">
@@ -161,15 +188,15 @@ onUnmounted(() => {
         <div class="publication-list">
           <article v-for="(paper, index) in site.publications" :key="paper.title" class="publication" :aria-labelledby="'paper-title-' + index">
             <header class="paper-heading">
-              <div class="paper-meta"><span>{{ paper.venue }}</span><time>{{ paper.year }}</time></div>
-              <h3 :id="'paper-title-' + index"><a :href="paper.links.paper" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a></h3>
+              <div class="paper-meta"><span>{{ paper.venue }}</span><time>{{ paper.year }}</time><span v-if="paper.status" class="paper-status">{{ paper.status }}</span></div>
+              <h3 :id="'paper-title-' + index"><a v-if="paper.links?.paper" :href="paper.links.paper" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a><template v-else>{{ paper.title }}</template></h3>
               <p class="paper-authors">{{ paper.authors }}</p>
             </header>
             <button class="paper-image" @click="openImage(paper.image, paper.title)" :aria-label="'放大论文配图：' + paper.title"><img :src="paper.image" :alt="paper.title + '方法图'" loading="lazy" width="280" height="190" /><span>查看配图 <span aria-hidden="true">↗</span></span></button>
             <div class="paper-body">
               <p class="paper-intro">{{ paper.abstract.split('。')[0] }}。</p>
               <p class="paper-highlight">{{ paper.highlight }}</p>
-              <div class="paper-actions"><a v-for="link in links(paper.links)" :key="link.key" class="text-link" :href="link.href" target="_blank" rel="noopener noreferrer">{{ linkLabel[link.key] ?? link.key }} <span aria-hidden="true">↗</span></a></div>
+              <div v-if="links(paper.links).length" class="paper-actions"><a v-for="link in links(paper.links)" :key="link.key" class="text-link" :href="link.href" target="_blank" rel="noopener noreferrer">{{ linkLabel[link.key] ?? link.key }} <span aria-hidden="true">↗</span></a></div>
               <details class="paper-abstract"><summary>阅读摘要</summary><p>{{ paper.abstract }}</p></details>
             </div>
           </article>
