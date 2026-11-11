@@ -118,13 +118,13 @@ body:has(dialog[open]) { overflow: hidden; }
 .btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 16px; padding: 10px 20px; border: 1px solid var(--border); border-radius: 8px; background: white; font-weight: 500; line-height: 1.5; }
 .text-link { display: inline-flex; align-items: center; gap: 9px; color: var(--link); font-size: 14px; font-weight: 500; border: 0; background: none; padding: 0; text-underline-offset: 5px; }
 .text-link:hover { text-decoration: underline; }
-.section { --panel-start: #d7edff; --panel-middle: #e8f6ff; --panel-end: #d8f3ee; --panel-edge: #91bdd9; --panel-ink: #1697bc; position: relative; isolation: isolate; padding: 38px 40px; margin-bottom: 28px; background: radial-gradient(ellipse at 100% 0%, #70d9e535, transparent 52%), linear-gradient(125deg, var(--panel-start), var(--panel-middle) 52%, var(--panel-end)); border: 1px solid var(--panel-edge); border-radius: 22px; box-shadow: 0 14px 38px #17648d14, inset 0 1px 0 #ffffffc9, inset 0 -1px 0 #ffffff70; scroll-margin-top: 12px; }
-.section::before { content: ''; position: absolute; z-index: -1; inset: 0; border-radius: inherit; pointer-events: none; background-image: linear-gradient(#178ebc0c 1px, transparent 1px), linear-gradient(90deg, #178ebc0c 1px, transparent 1px), radial-gradient(circle at 85% 8%, #40bdd81c, transparent 42%); background-size: 42px 42px, 42px 42px, 100% 100%; mask-image: linear-gradient(110deg, transparent 15%, #0008 65%, #000); }
+.section { --panel-start: #eaf5ff; --panel-middle: #f3f9ff; --panel-end: #edf9f4; --panel-edge: #b5cede; --panel-ink: #399bc5; position: relative; isolation: isolate; padding: 38px 40px; margin-bottom: 28px; background: radial-gradient(ellipse at 100% 0%, #a8e8d329, transparent 52%), linear-gradient(125deg, var(--panel-start), var(--panel-middle) 52%, var(--panel-end)); border: 1px solid var(--panel-edge); border-radius: 22px; box-shadow: 0 14px 38px #17648d0d, inset 0 1px 0 #ffffffc9, inset 0 -1px 0 #ffffff70; scroll-margin-top: 12px; }
+.section::before { content: ''; position: absolute; z-index: -1; inset: 0; border-radius: inherit; pointer-events: none; background-image: linear-gradient(#178ebc08 1px, transparent 1px), linear-gradient(90deg, #178ebc08 1px, transparent 1px), radial-gradient(ellipse at 100% 0%, transparent 31%, #77bed51f 31.1%, transparent 31.3%, transparent 43%, #77bed515 43.1%, transparent 43.3%); background-size: 64px 64px, 64px 64px, 100% 100%; mask-image: linear-gradient(110deg, transparent 15%, #0008 65%, #000); }
 .section::after { content: ''; position: absolute; z-index: -1; top: -1px; left: 26px; right: 26px; height: 2px; background: linear-gradient(90deg, transparent 5%, var(--panel-ink) 30%, #4bcdb5 55%, transparent 85%); background-size: 200% 100%; box-shadow: 0 0 16px #34b8d457; pointer-events: none; animation: panel-signal 12s ease-in-out infinite alternate; }
 @keyframes panel-signal { from { background-position: 0% 0; } to { background-position: 100% 0; } }
-.section:where(#experience) { --panel-start: #cdebf7; --panel-middle: #e1f6fb; --panel-end: #cef1e8; --panel-edge: #7bbccc; --panel-ink: #109aa5; }
-.section:where(#projects) { --panel-start: #d2e8ff; --panel-middle: #e8f4ff; --panel-end: #d2f0f3; }
-.section:where(#about, #honors) { --panel-start: #d5f0ee; --panel-middle: #e4f8f2; --panel-end: #dceefa; --panel-edge: #91c8c5; --panel-ink: #198e8a; }
+.section:where(#experience) { --panel-start: #e8f4ff; --panel-middle: #f5faff; --panel-end: #edf9f5; }
+.section:where(#projects) { --panel-start: #ecf5ff; --panel-middle: #f6faff; --panel-end: #edf8f8; }
+.section:where(#about, #honors) { --panel-start: #edf7f5; --panel-middle: #f6faf9; --panel-end: #eef5fc; }
 .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 25px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid #78b5d35e; }
 .section h2 { text-shadow: 0 2px 18px #158db521; }
 .section-heading p { font-size: 14px; color: var(--muted); margin-top: 10px; }
@@ -179,7 +179,7 @@ details p { padding-block: 8px; line-height: 1.9; font-size: 14px; }
 .experience > div > p:not(.experience-role) { font-size: 14px; }
 .experience details { margin-top: 10px; }
 .company-alias { font-size: 13px; color: var(--muted); margin-top: 5px; }
-.experience-summary { padding: 14px 18px; margin-block: 20px 14px; border: 1px solid #88cdbf; border-radius: 8px; background: linear-gradient(110deg, #c4eee2, #e2f7ef); color: #20584b; font-size: 14px; line-height: 1.9; box-shadow: inset 0 1px 0 #ffffffa1; }
+.experience-summary { padding: 14px 18px; margin-block: 20px 14px; border: 1px solid #b0d8cb; border-radius: 8px; background: linear-gradient(110deg, #e2f3eb, #f0faf5); color: #20584b; font-size: 14px; line-height: 1.9; box-shadow: inset 0 1px 0 #ffffffa1; }
 .current-badge { display: inline-block; margin-left: 10px; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; color: #126350; background: #d7f4e9; vertical-align: middle; }
 .experience-period > .current-badge { display: table; margin: 12px 0 0; }
 .experience-showcase { margin-top: 25px; }
